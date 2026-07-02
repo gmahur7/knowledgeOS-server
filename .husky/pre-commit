@@ -1,1 +1,11 @@
+# Abort the commit if any step fails (non-zero exit stops the commit).
+set -e
+
+# 1. Format + lint staged files (prettier --write, eslint --fix).
 pnpm exec lint-staged
+
+# 2. Type-check the whole project.
+pnpm run typecheck
+
+# 3. Build.
+pnpm run build
